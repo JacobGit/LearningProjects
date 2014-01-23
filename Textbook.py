@@ -372,6 +372,131 @@ for turn in range(4):
 
 
 
+def is_palindrome(string):
+    """Write a function that returns true if its string 
+    parameter is a palindrome (and false otherwise). A palindrome 
+    is a string that reads the same backwards or forwards, e.g. 
+    "Madam, I'm Adam." Actually, this string would fail the test 
+    because it contains white space and punctuation. With parameter 
+    "madamimadam", the function would return true."""
+
+    #Rebuilt string containing only lowercase letters
+    string = string.lower()
+    string = ''.join([c for c in string if c.isalpha()])
+
+    #Recursive check
+    if len(string) <= 1:
+        return True
+
+    elif string[0] == string[-1]:
+        return is_palindrome(string[1:-1])
+
+    else:
+        return False
+
+def metrics(x):
+    """Compute the median of a one-dimensional x x containing 
+    integers, and count the number of zeros in x. 
+    Compute the median as a floating point number.
+
+    Precondition: x is an list of ints or floats with length >= 3"""
+
+    #Sorting and storing the length
+    x.sort()
+    length = len(x)
+
+    #if odd number of elements
+    if length % 2 != 0:
+        median = x[length/2]
+
+    #if even number of elements
+    else:
+        median = (x[length/2] + x[length/2 + 1]) / 2.0
+
+    number_of_zeros = x.count(0)
+
+    print "Median is: " + str(median)
+    print "Number of zeros: " + str(number_of_zeros)
+
+def accurate_int_division(b, c):
+    """Given integers b and c, compute b/c as an integer 
+    (rounded to the nearest integer).  That is, round down if 
+    the remainder is less than 1/2, and up if the remainder is 
+    1/2 or more.  The value returned by the method should be an 
+    integer, not a floating point number."""
+
+    return int(round(b/float(c),0))
+
+def count_zeros(y):
+    """Count the number of zeroes in a rectangular matrix y"""
+    number_of_zeros = 0
+
+    for embedded in y:
+        number_of_zeros += embedded.count(0)
+
+    return number_of_zeros
+
+def equal_diagonal(square):
+    """For a square array square, determine whether all the 
+    diagonal elements have the same value.
+    Ex.) [2,3,4,2]
+         [4,2,2,2]
+         [1,2,2,7]
+         [2,4,3,2]"""
+
+    length = len(square[0])
+
+    first = [square[i][i] for i in range(length)]
+    second = [square[-1-i][i] for i in range(length)]
+
+    return True if first == second else False
+
+def balance(y):
+    """Define the "balance" of a rectangular matrix y to 
+    be the number of elements larger than the mean value 
+    (rounded to an integer using the method of question 4) 
+    minus the number of elements smaller than the mean. Given 
+    an integer matrix, compute its mean and balance."""
+
+    total = 0
+    length = 0
+
+    for lists in y:
+        total += sum(lists)
+        length += len(lists)
+
+    mean = accurate_int_division(total, length)
+
+    elements_above = 0
+    elements_below = 0
+
+    for lists in y:
+        for element in lists:
+            if element > mean:
+                elements_above += 1
+            elif element < mean:
+                elements_below += 1
+
+    balance = elements_above - elements_below
+
+    print "Mean is: " + str(mean)
+    print "Balance is: " + str(balance)
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
